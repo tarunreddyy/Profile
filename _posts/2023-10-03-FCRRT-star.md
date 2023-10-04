@@ -32,22 +32,22 @@ The FC-RRT* algorithm is fundamentally rooted in the principles of the Rapidly-e
 Let's start by defining our workspace. This is the environment or area where our drone operates.
 
 - **S**: Represents the complete workspace, including both free and obstructed spaces.
-- **S_{free}**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
+- **S<sup>free</sup>**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
 
 
 ### 2. **Tree Growth and Sampling**:
 
 The core principle of RRT* is to grow a tree that represents possible paths.
 
-- \( x_{init} \): The starting point or the initial position of the drone.
-- \( x_{rand} \): A randomly sampled point within \( S_{free} \). This serves as a potential new node for our tree.
+- **x<sup>init</sup>**: The starting point or the initial position of the drone.
+- **x<sup>rand</sup>**: A randomly sampled point within **S<sup>free</sup>**. This serves as a potential new node for our tree.
 
 ### 3. **Connecting the Nodes**:
 
 The tree grows by connecting these nodes, taking into consideration the shortest and most efficient routes.
 
-- \( x_{nearest} \): For a given \( x_{rand} \), this represents the nearest node already in our tree.
-- \( x_{new} \): A new node created by extending the tree from \( x_{nearest} \) towards \( x_{rand} \).
+- **x<sup>nearest</sup>**: For a given **x<sup>rand</sup>**, this represents the nearest node already in our tree.
+- **x<sup>new</sup>**: A new node created by extending the tree from **x<sup>nearest</sup>** towards **x<sup>rand</sup>**.
 
 Using these notations, the basic process of tree expansion in RRT* can be represented as:
 
@@ -59,25 +59,25 @@ Where the function "extend" represents the operation of growing the tree towards
 
 ### 4. **Path Optimization**:
 
-The "Star" in RRT* signifies continuous refinement. Once \( x_{new} \) is added:
+The "Star" in RRT* signifies continuous refinement. Once **x<sup>new</sup>** is added:
 
-- We inspect all nodes in a vicinity of \( x_{new} \) to see if connecting through \( x_{new} \) offers a shorter path.
-- If a shorter path is identified, the tree is reconnected to utilize \( x_{new} \) as a waypoint.
+- We inspect all nodes in a vicinity of **x<sup>new</sup>** to see if connecting through **x<sup>new</sup>** offers a shorter path.
+- If a shorter path is identified, the tree is reconnected to utilize **x<sup>new</sup>** as a waypoint.
 
 This can be mathematically represented by:
 
-\[
-$$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$
-\]
 
-Where \( C \) is the cost function, \( x_{near} \) is a neighboring node, and \( x_{goal} \) is our destination. If the above condition is true, the path from \( x_{near} \) to \( x_{goal} \) via \( x_{new} \) is shorter, and the tree is reconnected accordingly.
+$$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$
+
+
+Where C is the cost function, **x<sup>near</sup>** is a neighboring node, and **x<sup>goal</sup>** is our destination. If the above condition is true, the path from **x<sup>near</sup>** to **x<sup>goal</sup>** via **x<sup>new</sup>** is shorter, and the tree is reconnected accordingly.
 
 ### 5. **Incorporating Flight Cost**:
 
-The fundamental enhancement in FC-RRT* is the introduction of a flight cost component. Instead of just distance, the cost function \( C \) also considers energy or battery consumption. This ensures the paths aren't just short, but also energy efficient.
+The fundamental enhancement in FC-RRT* is the introduction of a flight cost component. Instead of just distance, the cost function C also considers energy or battery consumption. This ensures the paths aren't just short, but also energy efficient.
 
-\[
-C(x_1, x_2) = \alpha \times \text{distance}(x_1, x_2) + \beta \times \text{energy\_cost}(x_1, x_2)
-\]
 
-Here, \( \alpha \) and \( \beta \) are weights, allowing us to balance between raw distance and energy consumption. The function "distance" calculates the spatial distance between two points, while "energy\_cost" evaluates the energy consumption between the two points.
+$$ C(x_1, x_2) = \alpha \times \text{distance}(x_1, x_2) + \beta \times \text{energy_cost}(x_1, x_2) $$
+
+
+Here, $$ \alpha $$ and $$ \beta $$ are weights, allowing us to balance between raw distance and energy consumption. The function "distance" calculates the spatial distance between two points, while "energy_cost" evaluates the energy consumption between the two points.
