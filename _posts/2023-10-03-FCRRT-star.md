@@ -31,10 +31,9 @@ The FC-RRT* algorithm is fundamentally rooted in the principles of the Rapidly-e
 
 Let's start by defining our workspace. This is the environment or area where our drone operates.
 
-- \( S \): Represents the complete workspace, including both free and obstructed spaces.
-- \( S_{free} \): Denotes the subset of \( S \) that's free from obstacles, essentially the navigable space.
+- **S**: Represents the complete workspace, including both free and obstructed spaces.
+- **S_{free}**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
 
-\[Image: Visual representation of the workspace with obstacles\]
 
 ### 2. **Tree Growth and Sampling**:
 
@@ -52,9 +51,9 @@ The tree grows by connecting these nodes, taking into consideration the shortest
 
 Using these notations, the basic process of tree expansion in RRT* can be represented as:
 
-\[
-x_{new} = \text{extend}(x_{nearest}, x_{rand})
-\]
+
+$$ x_{new} = \text{extend}(x_{nearest}, x_{rand}) $$
+
 
 Where the function "extend" represents the operation of growing the tree towards a new point.
 
@@ -68,7 +67,7 @@ The "Star" in RRT* signifies continuous refinement. Once \( x_{new} \) is added:
 This can be mathematically represented by:
 
 \[
-\text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new})
+$$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$
 \]
 
 Where \( C \) is the cost function, \( x_{near} \) is a neighboring node, and \( x_{goal} \) is our destination. If the above condition is true, the path from \( x_{near} \) to \( x_{goal} \) via \( x_{new} \) is shorter, and the tree is reconnected accordingly.
