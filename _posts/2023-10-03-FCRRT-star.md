@@ -32,22 +32,22 @@ The FC-RRT* algorithm is fundamentally rooted in the principles of the Rapidly-e
 Let's start by defining our workspace. This is the environment or area where our drone operates.
 
 - **S**: Represents the complete workspace, including both free and obstructed spaces.
-- **S<sup>free</sup>**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
+- **S<sub>free</sub>**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
 
 
 ### 2. **Tree Growth and Sampling**:
 
 The core principle of RRT* is to grow a tree that represents possible paths.
 
-- **x<sup>init</sup>**: The starting point or the initial position of the drone.
-- **x<sup>rand</sup>**: A randomly sampled point within **S<sup>free</sup>**. This serves as a potential new node for our tree.
+- **x<sub>init</sub>**: The starting point or the initial position of the drone.
+- **x<sub>rand</sub>**: A randomly sampled point within **S<sub>free</sub>**. This serves as a potential new node for our tree.
 
 ### 3. **Connecting the Nodes**:
 
 The tree grows by connecting these nodes, taking into consideration the shortest and most efficient routes.
 
-- **x<sup>nearest</sup>**: For a given **x<sup>rand</sup>**, this represents the nearest node already in our tree.
-- **x<sup>new</sup>**: A new node created by extending the tree from **x<sup>nearest</sup>** towards **x<sup>rand</sup>**.
+- **x<sub>nearest</sub>**: For a given **x<sub>rand</sub>**, this represents the nearest node already in our tree.
+- **x<sub>new</sub>**: A new node created by extending the tree from **x<sub>nearest</sub>** towards **x<sub>rand</sub>**.
 
 Using these notations, the basic process of tree expansion in RRT* can be represented as:
 
@@ -59,10 +59,10 @@ Where the function "extend" represents the operation of growing the tree towards
 
 ### 4. **Path Optimization**:
 
-The "Star" in RRT* signifies continuous refinement. Once **x<sup>new</sup>** is added:
+The "Star" in RRT* signifies continuous refinement. Once **x<sub>new</sub>** is added:
 
-- We inspect all nodes in a vicinity of **x<sup>new</sup>** to see if connecting through **x<sup>new</sup>** offers a shorter path.
-- If a shorter path is identified, the tree is reconnected to utilize **x<sup>new</sup>** as a waypoint.
+- We inspect all nodes in a vicinity of **x<sub>new</sub>** to see if connecting through **x<sub>new</sub>** offers a shorter path.
+- If a shorter path is identified, the tree is reconnected to utilize **x<sub>new</sub>** as a waypoint.
 
 This can be mathematically represented by:
 
@@ -70,7 +70,7 @@ This can be mathematically represented by:
 $$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$
 
 
-Where C is the cost function, **x<sup>near</sup>** is a neighboring node, and **x<sup>goal</sup>** is our destination. If the above condition is true, the path from **x<sup>near</sup>** to **x<sup>goal</sup>** via **x<sup>new</sup>** is shorter, and the tree is reconnected accordingly.
+Where C is the cost function, **x<sub>near</sub>** is a neighboring node, and **x<sub>goal</sub>** is our destination. If the above condition is true, the path from **x<sub>near</sub>** to **x<sub>goal</sub>** via **x<sub>new</sub>** is shorter, and the tree is reconnected accordingly.
 
 ### 5. **Incorporating Flight Cost**:
 
