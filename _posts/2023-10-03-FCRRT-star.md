@@ -32,22 +32,22 @@ The FC-RRT* algorithm is fundamentally rooted in the principles of the Rapidly-e
 Let's start by defining our workspace. This is the environment or area where our drone operates.
 
 - **S**: Represents the complete workspace, including both free and obstructed spaces.
-- **S<sub>free</sub>**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
+- **$$ S_{free} $$**: Denotes the subset of **S** that's free from obstacles, essentially the navigable space.
 
 
 ### 2. **Tree Growth and Sampling**:
 
 The core principle of RRT* is to grow a tree that represents possible paths.
 
-- **x<sub>init</sub>**: The starting point or the initial position of the drone.
-- **x<sub>rand</sub>**: A randomly sampled point within **S<sub>free</sub>**. This serves as a potential new node for our tree.
+- $$ x_{init} $$: The starting point or the initial position of the drone.
+- $$ x_{rand} $$: A randomly sampled point within $$ S_{free} $$. This serves as a potential new node for our tree.
 
 ### 3. **Connecting the Nodes**:
 
 The tree grows by connecting these nodes, taking into consideration the shortest and most efficient routes.
 
-- **x<sub>nearest</sub>**: For a given **x<sub>rand</sub>**, this represents the nearest node already in our tree.
-- **x<sub>new</sub>**: A new node created by extending the tree from **x<sub>nearest</sub>** towards **x<sub>rand</sub>**.
+- $$ x_{nearest} $$: For a given $$ x_{rand} $$, this represents the nearest node already in our tree.
+- $$ x_{new} $$: A new node created by extending the tree from $$ x_{nearest} $$ towards $$ x_{rand} $$.
 
 Using these notations, the basic process of tree expansion in RRT* can be represented as:
 
@@ -59,10 +59,10 @@ Where the function "extend" represents the operation of growing the tree towards
 
 ### 4. **Path Optimization**:
 
-The "Star" in RRT* signifies continuous refinement. Once **x<sub>new</sub>** is added:
+The "Star" in RRT* signifies continuous refinement. Once $$ x_{new} $$ is added:
 
-- We inspect all nodes in a vicinity of **x<sub>new</sub>** to see if connecting through **x<sub>new</sub>** offers a shorter path.
-- If a shorter path is identified, the tree is reconnected to utilize **x<sub>new</sub>** as a waypoint.
+- We inspect all nodes in a vicinity of $$ x_{new} $$ to see if connecting through $$ x_{new} $$ offers a shorter path.
+- If a shorter path is identified, the tree is reconnected to utilize $$ x_{new} $$ as a waypoint.
 
 This can be mathematically represented by:
 
@@ -70,14 +70,12 @@ This can be mathematically represented by:
 $$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$
 
 
-Where C is the cost function, **x<sub>near</sub>** is a neighboring node, and **x<sub>goal</sub>** is our destination. If the above condition is true, the path from **x<sub>near</sub>** to **x<sub>goal</sub>** via **x<sub>new</sub>** is shorter, and the tree is reconnected accordingly.
+Where **C** is the cost function, $$ x_{near} $$ is a neighboring node, and $$ x_{goal} $$ is our destination. If the above condition is true, the path from $$ x_{near} $$ to $$ x_{goal} $$ via $$ x_{new} $$ is shorter, and the tree is reconnected accordingly.
 
 ### 5. **Incorporating Flight Cost**:
 
 The fundamental enhancement in FC-RRT* is the introduction of a flight cost component. Instead of just distance, the cost function C also considers energy or battery consumption. This ensures the paths aren't just short, but also energy efficient.
 
-
 $$ C(x_1, x_2) = \alpha \times \text{distance}(x_1, x_2) + \beta \times \text{energy_cost}(x_1, x_2) $$
-
 
 Here, $$ \alpha $$ and $$ \beta $$ are weights, allowing us to balance between raw distance and energy consumption. The function "distance" calculates the spatial distance between two points, while "energy_cost" evaluates the energy consumption between the two points.
