@@ -20,8 +20,10 @@ The "Flight Cost" component takes this a step further. It's not just about findi
 
 To put it in even simpler terms, let's consider a relatable analogy. Imagine you're in a vast library, looking for a specific book. You have a vague idea of where it might be, so you start exploring. As you walk through the aisles, you begin to piece together a clearer path, avoiding sections you know don't contain your book. Along the way, you keep refining your search strategy, ensuring you're not wasting time or energy. The FC-RRT* algorithm is like your search strategy, guiding the drone, ensuring it doesn't waste its battery, and gets to its destination efficiently.
 
-In essence, the FC-RRT* algorithm is the behind-the-scenes hero for drones, ensuring they navigate the intricate dance of urban environments seamlessly. It's the bridge between the digital intelligence of machines and the practical demands of the real world, ensuring our skies are safe, and drones are efficient.
+In essence, the FC-RRT* algorithm is the behind-the-scenes hero for drones, ensuring they navigate the intricate dance of urban environments seamlessly. It's the bridge between the digital intelligence of machines and the practical demands of the real world, ensuring our skies are safe, and drones are efficient. This approach, recently explored in-depth by Guo et al. [1], showcases the potential of advanced path-planning algorithms in urban drone navigation.
 
+![Top view of the city in pygame](./assets/pygame_environment.png)  
+*Image 1: A top view of the 3D model of the city in the pygame environment. The red dot signifies the starting point, while the green dot marks the endpoint selected by the human.*
 
 ## Formal definition using appropriate notation
 
@@ -80,6 +82,10 @@ The fundamental enhancement in FC-RRT* is the introduction of a flight cost comp
 
 Here, **$$ \alpha $$** and **$$ \beta $$** are weights, allowing us to balance between raw distance and energy consumption. The function "distance" calculates the spatial distance between two points, while "energy_cost" evaluates the energy consumption between the two points.
 
+The intricacies of the FC-RRT* algorithm, as discussed by Guo et al. [1], highlight its robustness in handling complex 3D environments.
+
+![Alt text or GIF Description](./assets/FC_RRT_star.gif)
+
 
 ## Overview of the Key Results
 
@@ -89,7 +95,7 @@ Navigating the intricate web of urban environments, especially with towering sky
 
 One of the crowning achievements of the RRT* family of algorithms, including FC-RRT*, is the guarantee of asymptotic optimality. In simpler terms, as the algorithm is allowed more time and generates more samples, the path it discovers approaches the best possible path in terms of efficiency and safety.
 
-Mathematically, given enough samples **n**, the cost of the path **C(n)** will converge to the optimal cost **C^{*}**:
+Mathematically, given enough samples **n**, the cost of the path **C(n)** will converge to the optimal cost **$$ C^{*} $$**:
 
 
 $$ \lim_{{n \to \infty}} C(n) = C^* $$
@@ -115,7 +121,7 @@ This is particularly crucial in urban settings where landing spots might be limi
 While efficiency and speed are crucial, safety remains paramount. FC-RRT* has demonstrated a high degree of reliability in ensuring drones avoid collisions, even in densely populated urban terrains. This not only protects the drone but also ensures the safety of the urban populace and infrastructure.
 
 
-Certainly! The realm of robotics hinges on advanced decision-making, and path-planning algorithms like FC-RRT* play a central role in this. Let's delve deeper into how the FC-RRT* algorithm influences and enhances decision-making in robotics, especially in urban settings.
+Certainly! The realm of robotics hinges on advanced decision-making, and path-planning algorithms like FC-RRT* play a central role in this. Let's delve deeper into how the FC-RRT* algorithm influences and enhances decision-making in robotics, especially in urban settings. 
 
 ---
 
@@ -147,6 +153,8 @@ Modern robots are equipped with a plethora of sensors, from cameras to LiDAR. Th
 
 As urban environments become more complex, the decision-making process for robots becomes more challenging. FC-RRT*, with its ability to sample and explore large spaces, offers a scalable solution. Whether navigating a small park or a sprawling metropolis, the algorithm ensures robots can make decisions that are optimal for the scale of their environment.
 
+![Open3D visualization of FC-RRT* detailed path](./assets/open3d_vis1.png)  
+*Image 3: Another perspective in the Open3D environment, further emphasizing the intricacy of the optimal paths carved out by the FC-RRT* algorithm.*
 
 ## Brief Description of Variants
 
@@ -220,22 +228,24 @@ The FC-RRT* algorithm, with its unique blend of rapid exploration and energy eff
 
 ## References
 
-[1] Lavalle, S. M. (1998). Rapidly-exploring random trees: A new tool for path planning. *Computer Science Department, Iowa State University*.
+[1] Guo, Yicong, Xiaoxiong Liu, Xuhang Liu, Yue Yang, and Weiguo Zhang. 2022. "FC-RRT*: An Improved Path Planning Algorithm for UAV in 3D Complex Environment" ISPRS International Journal of Geo-Information 11, no. 2: 112. [Link](https://doi.org/10.3390/ijgi11020112).
 
-[2] Karaman, S., & Frazzoli, E. (2011). Sampling-based algorithms for optimal motion planning. *The International Journal of Robotics Research, 30*(7), 846-894.
+[2] Lavalle, S. M. (1998). Rapidly-exploring random trees: A new tool for path planning. *Computer Science Department, Iowa State University*.
 
-[3] Smith, R., Shah, B., & Dullerud, G. E. (2011). An application of model predictive control to aerial monitoring. *Control Systems Technology, IEEE Transactions on, 19*(5), 1015-1027.
+[3] Karaman, S., & Frazzoli, E. (2011). Sampling-based algorithms for optimal motion planning. *The International Journal of Robotics Research, 30*(7), 846-894.
 
-[4] Roberts, J. M., Corke, P., & Buskey, G. (2007). Low-cost flight control system for a small autonomous aircraft. *Robotics and Automation, IEEE Transactions on, 23*(1), 56-63.
+[4] Smith, R., Shah, B., & Dullerud, G. E. (2011). An application of model predictive control to aerial monitoring. *Control Systems Technology, IEEE Transactions on, 19*(5), 1015-1027.
 
-[5] Jung, D., & Tsiotras, P. (2007). A 3D path planning algorithm for UAVs. *Georgia Institute of Technology*.
+[5] Roberts, J. M., Corke, P., & Buskey, G. (2007). Low-cost flight control system for a small autonomous aircraft. *Robotics and Automation, IEEE Transactions on, 23*(1), 56-63.
 
-[6] Mueller, M., & D’Andrea, R. (2015). A generalized algorithm for fixed-wing UAV path planning amidst obstacles. *International Conference on Unmanned Aircraft Systems (ICUAS)*.
+[6] Jung, D., & Tsiotras, P. (2007). A 3D path planning algorithm for UAVs. *Georgia Institute of Technology*.
 
-[7] Wu, J., Zhang, Y., & Ding, Z. (2015). An efficient path planning method for UAVs in a complex environment. *Journal of Intelligent & Robotic Systems, 78*(3-4), 525-539.
+[7] Mueller, M., & D’Andrea, R. (2015). A generalized algorithm for fixed-wing UAV path planning amidst obstacles. *International Conference on Unmanned Aircraft Systems (ICUAS)*.
 
-[8] Brown, A., & Sammut, K. (2012). Evolutionary algorithms for unmanned aerial vehicle path planning. *IEEE Aerospace and Electronic Systems Magazine, 27*(10), 22-28.
+[8] Wu, J., Zhang, Y., & Ding, Z. (2015). An efficient path planning method for UAVs in a complex environment. *Journal of Intelligent & Robotic Systems, 78*(3-4), 525-539.
 
-[9] Anderson, K., & Papanikolopoulos, N. P. (2011). UAV using RRT* to search and track a mobile ground target. *IEEE International Conference on Robotics and Automation (ICRA)*.
+[9] Brown, A., & Sammut, K. (2012). Evolutionary algorithms for unmanned aerial vehicle path planning. *IEEE Aerospace and Electronic Systems Magazine, 27*(10), 22-28.
 
-[10] Maza, I., & Ollero, A. (2007). Multiple UAV cooperative searching operation using polygon area decomposition and efficient coverage algorithms. *Distributed Autonomous Robotic Systems, 6*, 221-230.
+[10] Anderson, K., & Papanikolopoulos, N. P. (2011). UAV using RRT* to search and track a mobile ground target. *IEEE International Conference on Robotics and Automation (ICRA)*.
+
+[11] Maza, I., & Ollero, A. (2007). Multiple UAV cooperative searching operation using polygon area decomposition and efficient coverage algorithms. *Distributed Autonomous Robotic Systems, 6*, 221-230.
