@@ -22,7 +22,7 @@ To put it in even simpler terms, let's consider a relatable analogy. Imagine you
 
 In essence, the FC-RRT* algorithm is the behind-the-scenes hero for drones, ensuring they navigate the intricate dance of urban environments seamlessly. It's the bridge between the digital intelligence of machines and the practical demands of the real world, ensuring our skies are safe, and drones are efficient. This approach, recently explored in-depth by Guo et al. [1], showcases the potential of advanced path-planning algorithms in urban drone navigation.
 
-![Top view of the city in pygame](./assets/pygame_environment.png)  
+![Top view of the city in pygame](../assets/pygame_environment.png)  
 *Image 1: A top view of the 3D model of the city in the pygame environment. The red dot signifies the starting point, while the green dot marks the endpoint selected by the human.*
 
 ## Formal definition using appropriate notation
@@ -84,7 +84,7 @@ Here, **$$ \alpha $$** and **$$ \beta $$** are weights, allowing us to balance b
 
 The intricacies of the FC-RRT* algorithm, as discussed by Guo et al. [1], highlight its robustness in handling complex 3D environments.
 
-![Alt text or GIF Description](./assets/FC_RRT_star.gif)
+![Alt text or GIF Description](../assets/FC_RRT_star.gif)
 
 
 ## Overview of the Key Results
@@ -153,7 +153,7 @@ Modern robots are equipped with a plethora of sensors, from cameras to LiDAR. Th
 
 As urban environments become more complex, the decision-making process for robots becomes more challenging. FC-RRT*, with its ability to sample and explore large spaces, offers a scalable solution. Whether navigating a small park or a sprawling metropolis, the algorithm ensures robots can make decisions that are optimal for the scale of their environment.
 
-![Open3D visualization of FC-RRT* detailed path](./assets/open3d_vis1.png)  
+![Open3D visualization of FC-RRT* detailed path](../assets/open3d_vis1.png)  
 *Image 3: Another perspective in the Open3D environment, further emphasizing the intricacy of the optimal paths carved out by the FC-RRT* algorithm.*
 
 ## Brief Description of Variants
