@@ -25,6 +25,8 @@ In essence, the FC-RRT* algorithm is the behind-the-scenes hero for drones, ensu
 ![Top view of the city in pygame](../assets/pygame_environment.png)  
 *Image 1: A top view of the 3D model of the city in the pygame environment. The red dot signifies the starting point, while the green dot marks the endpoint selected by the human.*
 
+---
+
 ## Formal definition using appropriate notation
 
 The FC-RRT* algorithm is fundamentally rooted in the principles of the Rapidly-exploring Random Trees (RRT*), enhanced to consider the flight costs or energy consumption when determining paths for drones. Here's a detailed breakdown of its formal definition and mechanics:
@@ -54,7 +56,7 @@ The tree grows by connecting these nodes, taking into consideration the shortest
 Using these notations, the basic process of tree expansion in RRT* can be represented as:
 
 
-**$$ x_{new} = \text{extend}(x_{nearest}, x_{rand}) $$**
+$$ x_{new} = \text{extend}(x_{nearest}, x_{rand}) $$
 
 
 Where the function "extend" represents the operation of growing the tree towards a new point.
@@ -69,7 +71,7 @@ The "Star" in RRT* signifies continuous refinement. Once **$$ x_{new} $$** is ad
 This can be mathematically represented by:
 
 
-**$$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$**
+$$ \text{if } C(x_{near}, x_{goal}) > C(x_{new}, x_{goal}) + C(x_{near}, x_{new}) $$
 
 
 Where **C** is the cost function, $$ x_{near} $$ is a neighboring node, and **$$ x_{goal} $$** is our destination. If the above condition is true, the path from **$$ x_{near} $$** to **$$ x_{goal} $$** via **$$ x_{new} $$** is shorter, and the tree is reconnected accordingly.
@@ -78,7 +80,7 @@ Where **C** is the cost function, $$ x_{near} $$ is a neighboring node, and **$$
 
 The fundamental enhancement in FC-RRT* is the introduction of a flight cost component. Instead of just distance, the cost function **$$ C $$** also considers energy or battery consumption. This ensures the paths aren't just short, but also energy efficient.
 
-**$$ C(x_1, x_2) = \alpha \times \text{distance}(x_1, x_2) + \beta \times \text{energy_cost}(x_1, x_2) $$**
+$$ C(x_1, x_2) = \alpha \times \text{distance}(x_1, x_2) + \beta \times \text{energy_cost}(x_1, x_2) $$
 
 Here, **$$ \alpha $$** and **$$ \beta $$** are weights, allowing us to balance between raw distance and energy consumption. The function "distance" calculates the spatial distance between two points, while "energy_cost" evaluates the energy consumption between the two points.
 
@@ -86,6 +88,7 @@ The intricacies of the FC-RRT* algorithm, as discussed by Guo et al. [1], highli
 
 ![Alt text or GIF Description](../assets/FC_RRT_star.gif)
 
+---
 
 ## Overview of the Key Results
 
@@ -156,6 +159,8 @@ As urban environments become more complex, the decision-making process for robot
 ![Open3D visualization of FC-RRT* detailed path](../assets/open3d_vis1.png)  
 *Image 3: Another perspective in the Open3D environment, further emphasizing the intricacy of the optimal paths carved out by the FC-RRT* algorithm.*
 
+---
+
 ## Brief Description of Variants
 
 The Rapidly-exploring Random Trees (RRT*) algorithm has proven to be a versatile and robust solution for path planning. Recognizing its potential, researchers and roboticists have introduced several variants, ensuring it remains effective across a spectrum of scenarios and robotic platforms.
@@ -185,6 +190,7 @@ The Rapidly-exploring Random Trees (RRT*) algorithm has proven to be a versatile
 - **Description**: This variant integrates Gaussian processes to model uncertain environments. By doing so, the robot can predict and understand areas where it lacks data, making its path planning more informed and adaptive.
 - **Application**: Robots operating in environments where sensory data might be sparse or unreliable can utilize this variant. An underwater drone exploring the depths of an ocean, where sensors might not always provide clear data, could use Gaussian Process RRT* for better navigation.
 
+---
 
 ## Overview of the Important Applications
 
@@ -192,13 +198,13 @@ The FC-RRT* algorithm, with its unique blend of rapid exploration and energy eff
 
 ### 1. **Urban Aerial Surveys**:
 
-- **Description**: As cities grow and evolve, keeping updated records becomes crucial. FC-RRT* enables drones to efficiently map urban terrains, ensuring every corner, alley, and high-rise is captured with precision[1][5]. By prioritizing energy efficiency, drones can cover vast urban areas in a single flight[2][6].
+- **Description**: As cities grow and evolve, keeping updated records becomes crucial. FC-RRT* enables drones to efficiently map urban terrains, ensuring every corner, alley, and high-rise is captured with precision[2][6]. By prioritizing energy efficiency, drones can cover vast urban areas in a single flight[3][7].
 - **Use Case**: Municipalities and city planners can deploy drones equipped with FC-RRT* to get real-time data on urban development, aiding in better infrastructure planning and maintenance.
 
 ### 2. **Urban Search and Rescue Operations**:
 
 - **Description**: Disasters, whether natural or man-made, can lead to complex urban scenarios with rubble, fires, or areas difficult for human rescue teams to access. Drones, using FC-RRT*, can swiftly navigate these terrains, looking for survivors or assessing damage.
-- **Use Case**: In the aftermath of an earthquake, drones can be deployed to navigate the affected city areas, providing real-time data to rescue teams and ensuring rapid response[9][10].
+- **Use Case**: In the aftermath of an earthquake, drones can be deployed to navigate the affected city areas, providing real-time data to rescue teams and ensuring rapid response[10][11].
 
 ### 3. **Aerial Photography and Entertainment**:
 
@@ -207,7 +213,7 @@ The FC-RRT* algorithm, with its unique blend of rapid exploration and energy eff
 
 ### 4. **Package Delivery in Urban Settings**:
 
-- **Description**: The future of urban package delivery envisions drones buzzing above our streets, delivering packages right to our doorsteps. FC-RRT* plays a pivotal role here, ensuring drones not only find the shortest path but also the most energy-efficient one, maximizing deliveries per charge[7][8].
+- **Description**: The future of urban package delivery envisions drones buzzing above our streets, delivering packages right to our doorsteps. FC-RRT* plays a pivotal role here, ensuring drones not only find the shortest path but also the most energy-efficient one, maximizing deliveries per charge[8][9].
 - **Use Case**: E-commerce companies can leverage FC-RRT* equipped drones to ensure timely and efficient deliveries, especially in dense urban areas where road traffic might cause delays.
 
 ### 5. **Environmental Monitoring**:
@@ -225,6 +231,7 @@ The FC-RRT* algorithm, with its unique blend of rapid exploration and energy eff
 - **Description**: Inspecting tall skyscrapers or sprawling infrastructure like bridges often poses risks to human inspectors. Drones, leveraging the capabilities of FC-RRT*, can perform these inspections safely and efficiently.
 - **Use Case**: Construction companies or city maintenance crews can employ drones to inspect buildings or bridges, ensuring structural integrity and safety without the need for risky manual inspections.
 
+---
 
 ## References
 
@@ -249,3 +256,6 @@ The FC-RRT* algorithm, with its unique blend of rapid exploration and energy eff
 [10] Anderson, K., & Papanikolopoulos, N. P. (2011). UAV using RRT* to search and track a mobile ground target. *IEEE International Conference on Robotics and Automation (ICRA)*.
 
 [11] Maza, I., & Ollero, A. (2007). Multiple UAV cooperative searching operation using polygon area decomposition and efficient coverage algorithms. *Distributed Autonomous Robotic Systems, 6*, 221-230.
+
+
+[Check out the FCRRT* project on GitHub](https://github.com/tarunreddyy/FC-RRT-Star)
